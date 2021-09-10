@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Todo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Intro
 
-## Available Scripts
+Todo App is a simple ReactJS CRUD application. As intern in DSinnovators we are going through some session (**javascript**, **react** for now) and some tasks are given by our mentor. Todo App is the 2nd task.
 
-In the project directory, you can run:
+<p align='center'>Hosted on : <a href="https://jspw.github.io/simple-todo">jspw.github.io/simple-todo</a<</p>
 
-### `npm start`
+## About Task
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+You are to write a to-do application using the following tools:
+React (of course)
+Local State Management
+It will allow the user to input 3 fields, which will later be shown in a single div/card:
+name
+email
+to-do
+Users will be able to create,update and delete those div/cards (containing name,email and to-do)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The design will be responsive, no need to make it pretty, functionality over aesthetics.
 
-### `npm test`
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+- ReactJs
+- TailwindCss
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Feature
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Add | Update | Delete todo
+- Local Storage
+- Responsive
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Git Workflow
 
-### `npm run eject`
+- dev -> main
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## For Developers
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### How to config React App with TailWindCSS?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Install tailwind with necessary stuffs :
+  `npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Init tailwindcss :
 
-## Learn More
+  `npx tailwindcss-cli@latest init`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Create a file named `craco.config.js` in root dir
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ```.js
+  module.exports = {
+  style: {
+      postcss: {
+      plugins: [require("tailwindcss"), require("autoprefixer")],
+      },
+  },
+  };
 
-### Code Splitting
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Change `index.css`
 
-### Analyzing the Bundle Size
+  ```.css
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Screenshots
 
-### Making a Progressive Web App
+### Desktop
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![](./ss/home.png)
+![](ss/todo-hover.png)
+![](ss/add-todo.png)
+![](ss/edit-todo.png)
+![](ss/error-show.png)
