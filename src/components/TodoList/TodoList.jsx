@@ -1,6 +1,4 @@
-import { todoList } from "../../utils/store";
 import Todo from "../Todo/Todo";
-
 export default function TodoList({ todoList, deleteTodo, editTodo }) {
   if (typeof todoList === "undefined")
     return (

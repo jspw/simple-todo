@@ -1,4 +1,4 @@
-function NavBar() {
+export default function NavBar() {
   return (
     <div className="container m-auto  bg-blue-300 sticky top-0 z-50">
       <a href="/">
@@ -7,5 +7,3 @@ function NavBar() {
     </div>
   );
 }
-
-export default NavBar;

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import TodoForm from "./TodoForm";
+import { ADD_MODE } from "../../utils/constants";
+import EditTodo from "../forms/EditTodo";
 
 export default function AddTodo(props) {
   const [flag, setFlag] = useState(false);
@@ -13,7 +14,13 @@ export default function AddTodo(props) {
   }
 
   if (flag) {
-    return <TodoForm closeModal={closeModal} addTodo={props.addTodo} />;
+    return (
+      <EditTodo
+        closeModal={closeModal}
+        addTodo={props.addTodo}
+        actionType={ADD_MODE}
+      />
+    );
   } else
     return (
       <div className="w-full my-2  flex justify-center bg-gray-400 sticky top-0 z-50 ">

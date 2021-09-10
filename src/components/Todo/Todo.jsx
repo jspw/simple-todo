@@ -1,5 +1,6 @@
 import { useState } from "react";
-import EditTodo from "./EditTodo";
+import { EDITING_MODE } from "../../utils/constants";
+import EditTodo from "../forms/EditTodo";
 
 function Todo({
   username,
@@ -14,8 +15,6 @@ function Todo({
 
   const [isEditing, setIsEditing] = useState(false);
 
-  console.log(username, email);
-
   function closeEditing() {
     setIsEditing(false);
   }
@@ -23,6 +22,7 @@ function Todo({
   if (isEditing) {
     return (
       <EditTodo
+        actionType={EDITING_MODE}
         username={username}
         email={email}
         todoTitle={todoTitle}
@@ -39,9 +39,9 @@ function Todo({
       onClick={handleClick}
       className="p-4 m-4 space-y-3 border border-gray-200  boxShadow rounded-lg flex flex-col justify-between flex-wrap hover:shadow-lg hover:border-transparent transform group w-48 h-auto"
     >
-      <div>
-        <div className="text-lg font-semibold">{todoTitle}</div>
-        <p>
+      <div className="">
+        <p className="text-lg font-semibold break-all">{todoTitle}</p>
+        <p className="text-xs wrapper break-all">
           By {username} ({email})
         </p>
       </div>

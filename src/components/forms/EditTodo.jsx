@@ -1,14 +1,7 @@
 import { useState } from "react";
+import { ADD_MODE, EDITING_MODE } from "../../utils/constants";
 
-export default function EditTodo({
-  username,
-  email,
-  todoTitle,
-  todoDescription,
-  editTodo,
-  index,
-  closeEditing,
-}) {
+export default function EditTodo(props) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isUserSectionEmpty, setUserSectionEmpty] = useState(false);
@@ -16,15 +9,14 @@ export default function EditTodo({
   const [isTitleSectionEmpty, setTitleSectionEmpty] = useState(false);
 
   const [formData, setFormData] = useState({
-    username: username,
-    email: email,
-    todoTitle: todoTitle,
-    todoDescription: todoDescription,
+    username: props.username || "",
+    email: props.email || "",
+    todoTitle: props.todoTitle || "",
+    todoDescription: props.todoDescription || "",
   });
 
   function handleTodoForm(e) {
     setFormData((previousState) => {
-      console.log(previousState);
       return {
         ...previousState,
         [e.target.name]: e.target.value,
@@ -33,11 +25,9 @@ export default function EditTodo({
   }
 
   function handleFormSubmit(e) {
-    console.log(formData);
     if (formData.username === "") {
       setUserSectionEmpty(true);
       setErrorMessage("Please enter a username");
-      console.log("User Section Empty");
     } else if (formData.email === "") {
       setUserSectionEmpty(true);
       setErrorMessage("Please enter an email");
@@ -46,20 +36,33 @@ export default function EditTodo({
       setTitleSectionEmpty(true);
       setErrorMessage("Please enter a title");
     } else {
-      editTodo(index, formData);
-      closeEditing();
+      if (props.actionType === EDITING_MODE) {
+        props.editTodo(props.index, formData);
+        props.closeEditing();
+      } else if (props.actionType === ADD_MODE) {
+        props.addTodo(formData);
+        props.closeModal();
+      }
     }
     e.preventDefault();
   }
 
   return (
-    <div className="flex center justify-center m-24 w-auto shadow-lg  fixed top-0 z-50 transform animate-fade-in-down">
+    <div className="flex center justify-center m-24 w-auto shadow-lg  fixed top-0 z-50">
       <div className="p-4 rounded-lg  bg-gray-100 space-y-2 border-gray-200">
         <div className="flex flex-row justify-between space-x-4">
           <div></div>
-
-          <div className="text-xl font-bold">Edit Todo</div>
-          <div className="cursor-pointer text-red-600" onClick={closeEditing}>
+          <div className="text-xl font-bold">
+            {props.actionType === EDITING_MODE ? `Edit Todo` : "Add a Todo"}
+          </div>
+          <div
+            className="cursor-pointer text-red-600"
+            onClick={
+              props.actionType === EDITING_MODE
+                ? props.closeEditing
+                : props.closeModal
+            }
+          >
             X
           </div>
         </div>
@@ -124,7 +127,7 @@ export default function EditTodo({
           </div>
 
           <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-400 active:bg-blue-700">
-            Update
+            {props.actionType === EDITING_MODE ? `Update` : "Add"}
           </button>
         </form>
       </div>
