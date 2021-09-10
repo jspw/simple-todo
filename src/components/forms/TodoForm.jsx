@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ADD_MODE, EDITING_MODE } from "../../utils/constants";
 
-export default function EditTodo(props) {
+export default function TodoForm(props) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isUserSectionEmpty, setUserSectionEmpty] = useState(false);
