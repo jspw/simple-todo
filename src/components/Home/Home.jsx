@@ -22,10 +22,14 @@ export default function Home() {
   }
 
   function deleteTodo(index) {
-    let newTodoList = [...todoList];
-    newTodoList.splice(index, 1);
-    setTodoList(newTodoList);
-    LocalStorage.saveTodoList(newTodoList);
+    let confirm = window.confirm("You are deleting the todo? ");
+
+    if (confirm) {
+      let newTodoList = [...todoList];
+      newTodoList.splice(index, 1);
+      setTodoList(newTodoList);
+      LocalStorage.saveTodoList(newTodoList);
+    }
   }
 
   function editTodo(index, todo) {
