@@ -4,7 +4,7 @@
 
 Todo App is a simple ReactJS CRUD application. As intern in DSinnovators we are going through some session (**javascript**, **react** for now) and some tasks are given by our mentor. Todo App is the 2nd task.
 
-<p align='center'>Hosted on : <a href="https://jspw.github.io/simple-todo">jspw.github.io/simple-todo</a<</p>
+<p align='center'>Hosted on : <a href="https://jspw.github.io/simple-todo">jspw.github.io/simple-todo</a></p>
 
 ## About Task
 
