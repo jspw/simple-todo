@@ -1,27 +1,27 @@
 import { todoList } from "../../utils/store";
 import Todo from "../Todo/Todo";
 
-export default function TodoList() {
-  const todos = todoList;
-
-  if (todos.length === 0) {
+export default function TodoList({ todoList, deleteTodo, editTodo }) {
+  console.log("toto", todoList);
+  if (todoList.length === 0) {
     return (
-      <div className="my-14 text-xl p-4">
+      <div className="my-14 text-xl p-4 text-yellow-400">
         No todo to show, please add a todo
       </div>
     );
   } else
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 ">
-        {todos.map((todo) => (
+      <div className="my-14 flex flex-wrap justify-center  ">
+        {todoList.map((todo, id) => (
           <Todo
-            id={todo.id}
-            title={todo.title}
-            detail={todo.detail}
+            key={id}
+            index={id}
             username={todo.username}
+            todoTitle={todo.todoTitle}
+            todoDescription={todo.todoDescription}
             email={todo.email}
-            date={todo.date}
-            isCompleted={todo.isCompleted}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
           />
         ))}
       </div>

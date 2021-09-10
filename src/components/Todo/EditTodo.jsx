@@ -1,6 +1,14 @@
 import { useState } from "react";
 
-export default function TodoForm(props) {
+export default function EditTodo({
+  username,
+  email,
+  todoTitle,
+  todoDescription,
+  editTodo,
+  index,
+  closeEditing,
+}) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isUserSectionEmpty, setUserSectionEmpty] = useState(false);
@@ -8,18 +16,21 @@ export default function TodoForm(props) {
   const [isTitleSectionEmpty, setTitleSectionEmpty] = useState(false);
 
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    todoTitle: "",
-    todoDescription: "",
+    username: username,
+    email: email,
+    todoTitle: todoTitle,
+    todoDescription: todoDescription,
   });
 
   function handleTodoForm(e) {
+    console.log(e.target.name, e.target.value);
     setFormData((previousState) => ({
       ...previousState,
       [e.target.name]: e.target.value,
     }));
+    console.log("snot up", formData);
   }
+  console.log("33 ", formData);
 
   function handleFormSubmit(e) {
     console.log(formData);
@@ -35,29 +46,26 @@ export default function TodoForm(props) {
       setTitleSectionEmpty(true);
       setErrorMessage("Please enter a title");
     } else {
-      props.addTodo(formData);
-      props.closeModal();
+      editTodo(formData, index);
+      //   closeEditing();
     }
     e.preventDefault();
   }
 
   return (
-    <div className=" flex justify-center m-24 w-auto shadow-lg  fixed top-0 z-50 transform animate-fade-in-down">
+    <div className="flex center justify-center m-24 w-auto shadow-lg  fixed top-0 z-50 transform animate-fade-in-down">
       <div className="p-4 rounded-lg  bg-gray-100 space-y-2 border-gray-200">
         <div className="flex flex-row justify-between space-x-4">
           <div></div>
 
-          <div className="text-xl font-bold">Add A Todo</div>
-          <div
-            className="cursor-pointer text-red-600"
-            onClick={props.closeModal}
-          >
+          <div className="text-xl font-bold">Edit Todo</div>
+          <div className="cursor-pointer text-red-600" onClick={closeEditing}>
             X
           </div>
         </div>
         <form
           onSubmit={handleFormSubmit}
-          className="flex flex-col center space-y-2 "
+          className="flex flex-col center space-y-2 lg:"
         >
           <label className="lg font-semibold">User Info</label>
           <hr />
@@ -116,7 +124,7 @@ export default function TodoForm(props) {
           </div>
 
           <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-400 active:bg-blue-700">
-            Add
+            Update
           </button>
         </form>
       </div>
