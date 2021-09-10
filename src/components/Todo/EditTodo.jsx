@@ -23,14 +23,16 @@ export default function EditTodo({
   });
 
   function handleTodoForm(e) {
-    console.log(e.target.name, e.target.value);
-    setFormData((previousState) => ({
-      ...previousState,
-      [e.target.name]: e.target.value,
-    }));
-    console.log("snot up", formData);
+    console.log("handleTodoForm", e.target.name, e.target.value);
+    setFormData((previousState) => {
+      console.log(previousState);
+      return {
+        ...previousState,
+        [e.target.name]: e.target.value,
+      };
+    });
+    console.log("handleTodoForm : after chaing ", formData);
   }
-  console.log("33 ", formData);
 
   function handleFormSubmit(e) {
     console.log(formData);
@@ -46,8 +48,8 @@ export default function EditTodo({
       setTitleSectionEmpty(true);
       setErrorMessage("Please enter a title");
     } else {
-      editTodo(formData, index);
-      //   closeEditing();
+      editTodo(index, formData);
+      closeEditing();
     }
     e.preventDefault();
   }
