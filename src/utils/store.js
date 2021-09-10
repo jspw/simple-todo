@@ -1,0 +1,131 @@
+export const user = [
+  {
+    id: 1,
+    username: "",
+    email: "",
+  },
+  {
+    id: 2,
+    username: "",
+    email: "",
+  },
+  {
+    id: 3,
+    username: "",
+    email: "",
+  },
+  {
+    id: 4,
+    username: "",
+    email: "",
+  },
+];
+
+export const todoList = [
+  // {
+  //   userId: 1,
+  //   id: 1,
+  //   title: "Wb Tech Assignment",
+  //   completed: false,
+  //   detail:
+  //     "Web Tech 2nd Assignment:  Message from Tausif Sir Web tech e shobai ekta cru1",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 2,
+  //   id: 2,
+  //   title: "Sunt aut facere repellat",
+  //   completed: false,
+  //   detail: "Lorem ipsderitfficia deserunt mollit anim id est laborum.",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 1,
+  //   id: 1,
+  //   title: "Wb Tech Assignment",
+  //   completed: false,
+  //   detail:
+  //     "ble thakbe and data visualization e minimum 3 ta query te multiple table theke data ashbe. Update delete insert eo same,  particular ngle project  Sir bolse kobe joma dite parbo date janaite. : 20th sept, 2021",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 1,
+  //   id: 1,
+  //   title: "Wb Tech Assignment",
+  //   completed: false,
+  //   detail:
+  //     "Web Tech 2nd Assignmente joma dite parbo date janaite. : 20th sept, 2021",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 2,
+  //   id: 2,
+  //   title: "Unt aut facere repellat",
+  //   completed: false,
+  //   detail:
+  //     "Lorem ipsderit in voluptate velit esse cillum dolore eu fugiat null",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 2,
+  //   id: 2,
+  //   title: "Sut facere repellat",
+  //   completed: false,
+  //   detail: "ing elit, sed do eiusmod tempor incididunt ut labore et dolo",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 2,
+  //   id: 2,
+  //   title: "Uacere repellat",
+  //   completed: false,
+  //   detail: "ui officia deserunt mollit anim id est laborum.",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 2,
+  //   id: 2,
+  //   title: "Int aut facere repellat",
+  //   completed: false,
+  //   detail:
+  //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 2,
+  //   id: 2,
+  //   title: "Asunt aut facere repellat",
+  //   completed: false,
+  //   detail: "ui officia deserunt mollit anim id est laborum.",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+  // {
+  //   userId: 2,
+  //   id: 2,
+  //   title: "Usunt aut facere repellat",
+  //   completed: false,
+  //   detail:
+  //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolo",
+  //   date: new Date().toUTCString(),
+  //   username: "Rahim Mia",
+  //   email: "mhshifat@y.com",
+  // },
+];
