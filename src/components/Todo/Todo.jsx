@@ -14,6 +14,8 @@ function Todo({
 
   const [isEditing, setIsEditing] = useState(false);
 
+  console.log(username, email);
+
   function closeEditing() {
     setIsEditing(false);
   }

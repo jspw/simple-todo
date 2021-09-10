@@ -29,14 +29,9 @@ export default function Home() {
   }
 
   function editTodo(index, todo) {
-    console.log("Home : To Edit\n", "index no : ", "new TOdo", index, todo);
     let newTodoList = todoList;
-    console.log("Old", newTodoList);
-    console.log("TO edit -> ", newTodoList[index],index);
     newTodoList[index] = todo;
-
-    console.log("New ToDo", newTodoList);
-    setTodoList(newTodoList);
+    setTodoList([...newTodoList]);
     LocalStorage.saveTodoList(newTodoList);
   }
 

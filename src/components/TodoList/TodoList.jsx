@@ -2,7 +2,6 @@ import { todoList } from "../../utils/store";
 import Todo from "../Todo/Todo";
 
 export default function TodoList({ todoList, deleteTodo, editTodo }) {
-  console.log("toto", todoList);
   if (typeof todoList === "undefined")
     return (
       <button type="button" class="bg-rose-600 ..." disabled>

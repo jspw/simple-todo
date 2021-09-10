@@ -23,7 +23,6 @@ export default function EditTodo({
   });
 
   function handleTodoForm(e) {
-    console.log("handleTodoForm", e.target.name, e.target.value);
     setFormData((previousState) => {
       console.log(previousState);
       return {
@@ -31,7 +30,6 @@ export default function EditTodo({
         [e.target.name]: e.target.value,
       };
     });
-    console.log("handleTodoForm : after chaing ", formData);
   }
 
   function handleFormSubmit(e) {
