@@ -35,7 +35,7 @@ The design will be responsive, no need to make it pretty, functionality over aes
 
 ## Git Workflow
 
-- dev -> main
+- dev -> main -> gh-pages
 
 ## For Developers
 

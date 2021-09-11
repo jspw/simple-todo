@@ -15,7 +15,7 @@ function Todo({
 
   const [isEditing, setIsEditing] = useState(false);
 
-  function closeEditing() {
+  function closeTodoFormModal() {
     setIsEditing(false);
   }
 
@@ -27,7 +27,7 @@ function Todo({
         email={email}
         todoTitle={todoTitle}
         todoDescription={todoDescription}
-        closeEditing={closeEditing}
+        closeTodoFormModal={closeTodoFormModal}
         editTodo={editTodo}
         index={index}
       />
@@ -37,15 +37,15 @@ function Todo({
   return (
     <div
       onClick={handleClick}
-      className="p-4 m-4 space-y-3 border border-gray-200  boxShadow rounded-lg flex flex-col justify-between flex-wrap hover:shadow-lg hover:border-transparent transform group w-64 h-auto"
+      className="p-4 m-4 space-y-3 border border-gray-200  boxShadow rounded-lg flex flex-col justify-between flex-wrap hover:shadow-lg hover:border-transparent transform group w-64"
     >
-      <div className="flex flex-col justify-start space-y-4">
+      <div className="flex flex-col justify-start space-y-4 break-words">
         <div className="space-y-2">
-          <p className="text-lg font-semibold font-mono break-all">
+          <p className="text-lg font-semibold font-mono break-words">
             {todoTitle}
           </p>
           <hr />
-          <div className="text-xs wrapper break-all space-y-2 ">
+          <div className="text-xs wrapper break-words space-y-2 ">
             <div className="space-x-2">
               <i class="fas fa-user-edit"></i>
               <span className="text-pink-800">{username}</span>
@@ -58,7 +58,12 @@ function Todo({
         </div>
 
         {todoDescription ? (
-          <div className="text-sm break-all">{todoDescription}</div>
+          <div
+            className="text-sm break-words "
+            style={{ wordBreak: "break-word" }}
+          >
+            {todoDescription}
+          </div>
         ) : (
           ""
         )}

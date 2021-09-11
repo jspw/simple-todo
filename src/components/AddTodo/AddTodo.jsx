@@ -9,14 +9,14 @@ export default function AddTodo(props) {
     setFlag(true);
   }
 
-  function closeModal() {
+  function closeTodoFormModal() {
     setFlag(false);
   }
 
   if (flag) {
     return (
       <TodoForm
-        closeModal={closeModal}
+        closeTodoFormModal={closeTodoFormModal}
         addTodo={props.addTodo}
         actionType={ADD_MODE}
       />
@@ -26,8 +26,8 @@ export default function AddTodo(props) {
       <div className="w-full my-2  flex justify-center bg-white sticky top-0 z-50 ">
         <input
           onClick={showModal}
-          className="p-3 max-w-xl fixed border appearance-none rounded shadow w-full focus:shadow-outline focus:border-blue-300 focus:outline-none "
-          placeholder="Add a todo"
+          className="p-3 max-w-xl fixed border appearance-none rounded shadow w-full focus:shadow-outline focus:border-blue-300 focus:outline-none fa"
+          placeholder="&#xf040;   Add a todo"
         />
       </div>
     );
