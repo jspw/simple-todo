@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ADD_MODE, EDITING_MODE } from "../../utils/constants";
 
 export default function TodoForm(props) {
@@ -38,14 +38,25 @@ export default function TodoForm(props) {
     } else {
       if (props.actionType === EDITING_MODE) {
         props.editTodo(props.index, formData);
-        props.closeEditing();
+        props.closeTodoFormModal();
       } else if (props.actionType === ADD_MODE) {
         props.addTodo(formData);
-        props.closeModal();
+        props.closeTodoFormModal();
       }
     }
     e.preventDefault();
   }
+
+  function handleEsc(event) {
+    if (event.keyCode === 27) {
+      props.closeTodoFormModal();
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   return (
     <div className="flex center justify-center m-24 w-auto shadow-lg  fixed top-0 z-50">
@@ -57,11 +68,7 @@ export default function TodoForm(props) {
           </div>
           <div
             className="cursor-pointer text-red-600"
-            onClick={
-              props.actionType === EDITING_MODE
-                ? props.closeEditing
-                : props.closeModal
-            }
+            onClick={props.closeTodoFormModal}
           >
             X
           </div>
@@ -76,6 +83,7 @@ export default function TodoForm(props) {
             <input
               value={formData.username}
               onChange={handleTodoForm}
+              autoFocus
               type="text"
               className="p-2 m-1 max-w-xl border appearance-none rounded shadow focus:shadow-outline focus:border-blue-300 focus:outline-none"
               placeholder="Username"
