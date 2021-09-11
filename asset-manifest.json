@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/simple-todo/static/css/main.9e365f22.chunk.css",
-    "main.js": "/simple-todo/static/js/main.57b319f1.chunk.js",
-    "main.js.map": "/simple-todo/static/js/main.57b319f1.chunk.js.map",
+    "main.css": "/simple-todo/static/css/main.bd64bc74.chunk.css",
+    "main.js": "/simple-todo/static/js/main.704b8d10.chunk.js",
+    "main.js.map": "/simple-todo/static/js/main.704b8d10.chunk.js.map",
     "runtime-main.js": "/simple-todo/static/js/runtime-main.f669c2d2.js",
     "runtime-main.js.map": "/simple-todo/static/js/runtime-main.f669c2d2.js.map",
     "static/js/2.e8f43115.chunk.js": "/simple-todo/static/js/2.e8f43115.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.6648bb53.chunk.js": "/simple-todo/static/js/3.6648bb53.chunk.js",
     "static/js/3.6648bb53.chunk.js.map": "/simple-todo/static/js/3.6648bb53.chunk.js.map",
     "index.html": "/simple-todo/index.html",
-    "static/css/main.9e365f22.chunk.css.map": "/simple-todo/static/css/main.9e365f22.chunk.css.map",
+    "static/css/main.bd64bc74.chunk.css.map": "/simple-todo/static/css/main.bd64bc74.chunk.css.map",
     "static/js/2.e8f43115.chunk.js.LICENSE.txt": "/simple-todo/static/js/2.e8f43115.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f669c2d2.js",
     "static/js/2.e8f43115.chunk.js",
-    "static/css/main.9e365f22.chunk.css",
-    "static/js/main.57b319f1.chunk.js"
+    "static/css/main.bd64bc74.chunk.css",
+    "static/js/main.704b8d10.chunk.js"
   ]
 }
