@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { ADD_MODE, EDITING_MODE } from "../../utils/constants";
+import { useContext, useEffect, useState } from "react";
+import { TodoContext } from "../../Context/TodoContext";
+import { ADD_MODE, EDIT_MODE } from "../../utils/constants";
 
 export default function TodoForm(props) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -8,6 +9,8 @@ export default function TodoForm(props) {
 
   const [isTitleSectionEmpty, setTitleSectionEmpty] = useState(false);
 
+  const [todoList, setTodoList] = useContext(TodoContext);
+
   const [formData, setFormData] = useState({
     username: props.username || "",
     email: props.email || "",
@@ -15,13 +18,34 @@ export default function TodoForm(props) {
     todoDescription: props.todoDescription || "",
   });
 
-  function handleTodoForm(e) {
+  useEffect(() => {
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
+
+  function handleEsc(event) {
+    if (event.keyCode === 27) {
+      props.closeTodoFormModal();
+    }
+  }
+
+  function handleTodoFormInputs(e) {
     setFormData((previousState) => {
       return {
         ...previousState,
         [e.target.name]: e.target.value,
       };
     });
+  }
+
+  function addTodo(todo) {
+    setTodoList([...todoList, todo]);
+  }
+
+  function editTodo(index, todo) {
+    let newTodoList = todoList;
+    newTodoList[index] = todo;
+    setTodoList([...newTodoList]);
   }
 
   function handleFormSubmit(e) {
@@ -36,27 +60,15 @@ export default function TodoForm(props) {
       setTitleSectionEmpty(true);
       setErrorMessage("Please enter a title");
     } else {
-      if (props.actionType === EDITING_MODE) {
-        props.editTodo(props.index, formData);
-        props.closeTodoFormModal();
+      if (props.actionType === EDIT_MODE) {
+        editTodo(props.index, formData);
       } else if (props.actionType === ADD_MODE) {
-        props.addTodo(formData);
-        props.closeTodoFormModal();
+        addTodo(formData);
       }
+      props.closeTodoFormModal();
     }
     e.preventDefault();
   }
-
-  function handleEsc(event) {
-    if (event.keyCode === 27) {
-      props.closeTodoFormModal();
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
 
   return (
     <div className="flex center justify-center m-24 w-auto shadow-lg  fixed top-0 z-50">
@@ -64,7 +76,7 @@ export default function TodoForm(props) {
         <div className="flex flex-row justify-between space-x-4">
           <div></div>
           <div className="text-xl font-bold">
-            {props.actionType === EDITING_MODE ? `Edit Todo` : "Add a Todo"}
+            {props.actionType === EDIT_MODE ? `Edit Todo` : "Add a Todo"}
           </div>
           <div
             className="cursor-pointer text-red-600"
@@ -82,7 +94,7 @@ export default function TodoForm(props) {
           <div className="flex flex-col sm:flex-row">
             <input
               value={formData.username}
-              onChange={handleTodoForm}
+              onChange={handleTodoFormInputs}
               autoFocus
               type="text"
               className="p-2 m-1 max-w-xl border appearance-none rounded shadow focus:shadow-outline focus:border-blue-300 focus:outline-none"
@@ -92,7 +104,7 @@ export default function TodoForm(props) {
             <input
               value={formData.email}
               type="email"
-              onChange={handleTodoForm}
+              onChange={handleTodoFormInputs}
               className="p-2 m-1 max-w-xl border appearance-none rounded shadow focus:shadow-outline focus:border-blue-300 focus:outline-none"
               placeholder="Email Address"
               name="email"
@@ -111,7 +123,7 @@ export default function TodoForm(props) {
           <div className="flex flex-col">
             <input
               value={formData.todoTitle}
-              onChange={handleTodoForm}
+              onChange={handleTodoFormInputs}
               type="text"
               className="p-2 m-1 max-w-xl border appearance-none rounded shadow focus:shadow-outline focus:border-blue-300 focus:outline-none"
               placeholder="Todo Title"
@@ -126,7 +138,7 @@ export default function TodoForm(props) {
             )}
             <textarea
               value={formData.todoDescription}
-              onChange={handleTodoForm}
+              onChange={handleTodoFormInputs}
               type="text"
               className="p-2 m-1 max-w-xl border appearance-none rounded shadow focus:shadow-outline focus:border-blue-300 focus:outline-none"
               placeholder="Todo Description"
@@ -135,7 +147,7 @@ export default function TodoForm(props) {
           </div>
 
           <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-400 active:bg-blue-700">
-            {props.actionType === EDITING_MODE ? `Update` : "Add"}
+            {props.actionType === EDIT_MODE ? `Update` : "Add"}
           </button>
         </form>
       </div>
