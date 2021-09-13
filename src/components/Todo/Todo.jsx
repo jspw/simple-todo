@@ -1,44 +1,43 @@
-import { useState } from "react";
-import { EDITING_MODE } from "../../utils/constants";
+import { useContext, useState } from "react";
+import { TodoContext } from "../../Context/TodoContext";
+import { EDIT_MODE } from "../../utils/constants";
 import TodoForm from "../forms/TodoForm";
 
-function Todo({
-  username,
-  email,
-  todoTitle,
-  todoDescription,
-  deleteTodo,
-  editTodo,
-  index,
-}) {
-  function handleClick() {}
-
+function Todo({ username, email, todoTitle, todoDescription, index }) {
   const [isEditing, setIsEditing] = useState(false);
+
+  const [todoList, setTodoList] = useContext(TodoContext);
 
   function closeTodoFormModal() {
     setIsEditing(false);
   }
 
+  function deleteTodo(index) {
+    let confirm = window.confirm("You are deleting the todo? ");
+
+    if (confirm) {
+      let newTodoList = [...todoList];
+      newTodoList.splice(index, 1);
+      setTodoList(newTodoList);
+    }
+  }
+
   if (isEditing) {
     return (
       <TodoForm
-        actionType={EDITING_MODE}
+        actionType={EDIT_MODE}
         username={username}
         email={email}
         todoTitle={todoTitle}
         todoDescription={todoDescription}
         closeTodoFormModal={closeTodoFormModal}
-        editTodo={editTodo}
         index={index}
       />
     );
   }
 
   return (
-    <div
-      onClick={handleClick}
-      className="p-4 m-4 space-y-3 border border-gray-200  boxShadow rounded-lg flex flex-col justify-between flex-wrap hover:shadow-lg hover:border-transparent transform group w-64"
-    >
+    <div className="p-4 m-4 space-y-3 border border-gray-200  boxShadow rounded-lg flex flex-col justify-between flex-wrap hover:shadow-lg hover:border-transparent transform group w-64">
       <div className="flex flex-col justify-start space-y-4 break-words">
         <div className="space-y-2">
           <p className="text-lg font-semibold font-mono break-words">
@@ -47,7 +46,7 @@ function Todo({
           <hr />
           <div className="text-xs wrapper break-words space-y-2 ">
             <div className="space-x-2">
-              <i class="fas fa-user-edit"></i>
+              <i className="fas fa-user-edit"></i>
               <span className="text-pink-800">{username}</span>
             </div>
             <div className="space-x-2">
