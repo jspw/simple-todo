@@ -1,2 +1,2 @@
-export const EDITING_MODE = "editing mode";
-export const ADD_MODE = "add mode";
+export const EDIT_MODE = "EDIT_MODE";
+export const ADD_MODE = "ADDING_MODE";
