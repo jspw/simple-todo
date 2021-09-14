@@ -2,7 +2,7 @@
 
 ## Intro
 
-Todo App is a simple ReactJS CRUD application. As intern in DSinnovators we are going through some session (**javascript**, **react** for now) and some tasks are given by our mentor. Todo App is the 2nd task.
+Todo App is a simple ReactJS CRUD application. As intern in DSinnovators we are going through some session (**javascript**, **react** for now) and some tasks are given by our mentor (Yousha vai). Todo App is the 2nd task.
 
 <p align='center'>Hosted on : <a href="https://jspw.github.io/simple-todo">jspw.github.io/simple-todo</a></p>
 
@@ -20,12 +20,22 @@ Users will be able to create,update and delete those div/cards (containing name,
 
 The design will be responsive, no need to make it pretty, functionality over aesthetics.
 
+
+
+```
+
+```
+Again, rewrite the application using contextApi and useReducer. Make a new branch and name it "context-useReducer"
+
 ```
 
 ## Tech Stack
 
 - ReactJs
+  - ContextApi using `useReducer`
 - TailwindCss
+
+
 
 ## Feature
 
