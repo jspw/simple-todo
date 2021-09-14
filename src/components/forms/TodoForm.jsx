@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { TodoContext } from "../../Context/TodoContext";
 import { FORM_ADD_MODE, FORM_EDIT_MODE } from "../../utility/constants";
 import * as actions from "../../Context/actionTypes";
@@ -43,19 +43,27 @@ export default function TodoForm({
     });
   }
 
-  function handleFormSubmit(e) {
-    e.preventDefault();
+  function isFormValid() {
     if (formData.username === "") {
       setUserSectionEmpty(true);
       setErrorMessage("Please enter a username");
+      return false;
     } else if (formData.email === "") {
       setUserSectionEmpty(true);
       setErrorMessage("Please enter an email");
+      return false;
     } else if (formData.todoTitle === "") {
       setUserSectionEmpty(false);
       setTitleSectionEmpty(true);
       setErrorMessage("Please enter a title");
-    } else {
+      return false;
+    }
+    return true;
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    if (isFormValid()) {
       if (fromActionType === FORM_EDIT_MODE) {
         dispatch({
           type: actions.EDIT_TODO,
