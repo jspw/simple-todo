@@ -28,11 +28,6 @@ export default function TodoForm({
     todoDescription: todoDescription || "",
   });
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  });
-
   function handleEsc(event) {
     if (event.keyCode === 27) {
       closeTodoFormModal();
@@ -81,7 +76,10 @@ export default function TodoForm({
   }
 
   return (
-    <div className="flex center justify-center m-24 w-auto shadow-lg  fixed top-0 z-50">
+    <div
+      className="flex center justify-center m-24 w-auto shadow-lg  fixed top-0 z-50"
+      onKeyDown={handleEsc}
+    >
       <div className="p-4 rounded-lg  bg-gray-100 space-y-2 border-gray-200">
         <div className="flex flex-row justify-between space-x-4">
           <div></div>
