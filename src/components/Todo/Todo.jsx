@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { TodoContext } from "../../Context/TodoContext";
 import { FORM_EDIT_MODE } from "../../utility/constants";
 import TodoForm from "../forms/TodoForm";
-import * as actions from "../../Context/actionTypes";
+import { actions } from "../../Context/actionTypes";
 
 function Todo({ username, email, todoTitle, todoDescription, id }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -47,15 +47,13 @@ function Todo({ username, email, todoTitle, todoDescription, id }) {
           </div>
         </div>
 
-        {todoDescription ? (
+        {todoDescription && (
           <div
             className="text-sm break-words "
             style={{ wordBreak: "break-word" }}
           >
             {todoDescription}
           </div>
-        ) : (
-          ""
         )}
       </div>
 
