@@ -1,4 +1,4 @@
-import * as actions from "./actionTypes";
+import { actions } from "./actionTypes";
 
 export function addTodo(todo) {
   return {

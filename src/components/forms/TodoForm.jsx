@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { TodoContext } from "../../Context/TodoContext";
 import { FORM_ADD_MODE, FORM_EDIT_MODE } from "../../utility/constants";
-import * as actions from "../../Context/actionTypes";
+import { actions } from "../../Context/actionTypes";
 
 export default function TodoForm({
   fromActionType,
@@ -126,12 +126,10 @@ export default function TodoForm({
               name="email"
             />
           </div>
-          {isUserSectionEmpty ? (
+          {isUserSectionEmpty && (
             <div className="text-center text-red-500  p-1 rounded">
               {errorMessage}
             </div>
-          ) : (
-            ""
           )}
 
           <label className="lg font-semibold">Todo Section</label>
@@ -145,12 +143,10 @@ export default function TodoForm({
               placeholder="Todo Title"
               name="todoTitle"
             />
-            {isTitleSectionEmpty ? (
+            {isTitleSectionEmpty && (
               <div className="text-center text-red-500  p-1 rounded">
                 {errorMessage}
               </div>
-            ) : (
-              ""
             )}
             <textarea
               value={formData.todoDescription}
@@ -163,7 +159,7 @@ export default function TodoForm({
           </div>
 
           <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-400 active:bg-blue-700">
-            {fromActionType === FORM_EDIT_MODE ? `Update` : "Add"}
+            {fromActionType === FORM_EDIT_MODE ? "Update" : "Add"}
           </button>
         </form>
       </div>
