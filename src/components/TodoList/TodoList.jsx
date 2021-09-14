@@ -14,14 +14,14 @@ export default function TodoList() {
   } else
     return (
       <div className="my-14 flex flex-wrap justify-center  ">
-        {todoList.map((todo) => (
+        {todoList.map(({ id, username, email, todoTitle, todoDescription }) => (
           <Todo
-            key={todo.id}
-            id={todo.id}
-            username={todo.username}
-            email={todo.email}
-            todoTitle={todo.todoTitle}
-            todoDescription={todo.todoDescription}
+            key={id}
+            id={id}
+            username={username}
+            email={email}
+            todoTitle={todoTitle}
+            todoDescription={todoDescription}
           />
         ))}
       </div>
