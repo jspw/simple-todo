@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { TodoContext } from "../../Context/TodoContext";
 import Todo from "../Todo/Todo";
 export default function TodoList() {
-  const [todoList, _] = useContext(TodoContext);
+  const { todoList } = useContext(TodoContext);
+
   if (typeof todoList === "undefined")
     return (
-      <button type="button" class="bg-rose-600 ..." disabled>
+      <button type="button" className="bg-rose-600 ..." disabled>
         <svg
           className="animate-spin h-5 w-5 mr-3 ... p-5 text-yellow-500 text-lg"
           viewBox="0 0 24 24"
@@ -22,14 +23,14 @@ export default function TodoList() {
   } else
     return (
       <div className="my-14 flex flex-wrap justify-center  ">
-        {todoList.map((todo, id) => (
+        {todoList.map((todo) => (
           <Todo
-            key={id * Math.random()}
-            index={id}
+            key={todo.id}
+            id={todo.id}
             username={todo.username}
+            email={todo.email}
             todoTitle={todo.todoTitle}
             todoDescription={todo.todoDescription}
-            email={todo.email}
           />
         ))}
       </div>

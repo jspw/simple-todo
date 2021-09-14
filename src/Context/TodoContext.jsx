@@ -1,13 +1,15 @@
-import { createContext, useState } from "react";
-import LocalStorage from "../utils/localStorage";
+import { createContext, useReducer } from "react";
+import { getLocalTodoList } from "../utility/localStorage";
+import todoReducer from "./todoReducer";
 
-export const TodoContext = createContext();
+const initialState = [];
+export const TodoContext = createContext(initialState);
 
 export default function TodoStore(props) {
-  const todoLocalData = LocalStorage.getTodoList();
-  const [todoList, setTodoList] = useState(todoLocalData);
+  const initialTodoList = getLocalTodoList();
+  const [todoList, dispatch] = useReducer(todoReducer, initialTodoList);
   return (
-    <TodoContext.Provider value={[todoList, setTodoList]}>
+    <TodoContext.Provider value={{ todoList, dispatch }}>
       {props.children}
     </TodoContext.Provider>
   );

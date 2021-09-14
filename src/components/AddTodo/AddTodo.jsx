@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { ADD_MODE } from "../../utils/constants";
+import { FORM_ADD_MODE } from "../../utility/constants";
 import TodoForm from "../forms/TodoForm";
 
-export default function AddTodo(props) {
+export default function AddTodo() {
   const [isFormVisible, setIsFormVisible] = useState(false);
-
   function showForm() {
     setIsFormVisible(true);
   }
-
   function closeTodoFormModal() {
     setIsFormVisible(false);
   }
-
   if (isFormVisible) {
     return (
-      <TodoForm closeTodoFormModal={closeTodoFormModal} actionType={ADD_MODE} />
+      <TodoForm
+        closeTodoFormModal={closeTodoFormModal}
+        fromActionType={FORM_ADD_MODE}
+      />
     );
   } else
     return (

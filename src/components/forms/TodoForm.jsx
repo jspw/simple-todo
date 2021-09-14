@@ -1,31 +1,41 @@
 import { useContext, useEffect, useState } from "react";
 import { TodoContext } from "../../Context/TodoContext";
-import { ADD_MODE, EDIT_MODE } from "../../utils/constants";
+import { FORM_ADD_MODE, FORM_EDIT_MODE } from "../../utility/constants";
+import * as actions from "../../Context/actionTypes";
 
-export default function TodoForm(props) {
+export default function TodoForm({
+  fromActionType,
+  closeTodoFormModal,
+  id,
+  username,
+  email,
+  todoTitle,
+  todoDescription,
+}) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isUserSectionEmpty, setUserSectionEmpty] = useState(false);
 
   const [isTitleSectionEmpty, setTitleSectionEmpty] = useState(false);
 
-  const [todoList, setTodoList] = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
 
   const [formData, setFormData] = useState({
-    username: props.username || "",
-    email: props.email || "",
-    todoTitle: props.todoTitle || "",
-    todoDescription: props.todoDescription || "",
+    id: id || Date.now() + Math.random(),
+    username: username || "",
+    email: email || "",
+    todoTitle: todoTitle || "",
+    todoDescription: todoDescription || "",
   });
 
   useEffect(() => {
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
+  });
 
   function handleEsc(event) {
     if (event.keyCode === 27) {
-      props.closeTodoFormModal();
+      closeTodoFormModal();
     }
   }
 
@@ -38,17 +48,8 @@ export default function TodoForm(props) {
     });
   }
 
-  function addTodo(todo) {
-    setTodoList([...todoList, todo]);
-  }
-
-  function editTodo(index, todo) {
-    let newTodoList = todoList;
-    newTodoList[index] = todo;
-    setTodoList([...newTodoList]);
-  }
-
   function handleFormSubmit(e) {
+    e.preventDefault();
     if (formData.username === "") {
       setUserSectionEmpty(true);
       setErrorMessage("Please enter a username");
@@ -60,14 +61,23 @@ export default function TodoForm(props) {
       setTitleSectionEmpty(true);
       setErrorMessage("Please enter a title");
     } else {
-      if (props.actionType === EDIT_MODE) {
-        editTodo(props.index, formData);
-      } else if (props.actionType === ADD_MODE) {
-        addTodo(formData);
+      if (fromActionType === FORM_EDIT_MODE) {
+        dispatch({
+          type: actions.EDIT_TODO,
+          payload: {
+            todo: formData,
+          },
+        });
+      } else if (fromActionType === FORM_ADD_MODE) {
+        dispatch({
+          type: actions.ADD_TODO,
+          payload: {
+            todo: formData,
+          },
+        });
       }
-      props.closeTodoFormModal();
+      closeTodoFormModal();
     }
-    e.preventDefault();
   }
 
   return (
@@ -76,11 +86,11 @@ export default function TodoForm(props) {
         <div className="flex flex-row justify-between space-x-4">
           <div></div>
           <div className="text-xl font-bold">
-            {props.actionType === EDIT_MODE ? `Edit Todo` : "Add a Todo"}
+            {fromActionType === FORM_EDIT_MODE ? `Edit Todo` : "Add a Todo"}
           </div>
           <div
             className="cursor-pointer text-red-600"
-            onClick={props.closeTodoFormModal}
+            onClick={closeTodoFormModal}
           >
             X
           </div>
@@ -147,7 +157,7 @@ export default function TodoForm(props) {
           </div>
 
           <button className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-400 active:bg-blue-700">
-            {props.actionType === EDIT_MODE ? `Update` : "Add"}
+            {fromActionType === FORM_EDIT_MODE ? `Update` : "Add"}
           </button>
         </form>
       </div>

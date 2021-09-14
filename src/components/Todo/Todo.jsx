@@ -1,37 +1,28 @@
 import { useContext, useState } from "react";
 import { TodoContext } from "../../Context/TodoContext";
-import { EDIT_MODE } from "../../utils/constants";
+import { FORM_EDIT_MODE } from "../../utility/constants";
 import TodoForm from "../forms/TodoForm";
+import * as actions from "../../Context/actionTypes";
 
-function Todo({ username, email, todoTitle, todoDescription, index }) {
+function Todo({ username, email, todoTitle, todoDescription, id }) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const [todoList, setTodoList] = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
 
   function closeTodoFormModal() {
     setIsEditing(false);
   }
 
-  function deleteTodo(index) {
-    let confirm = window.confirm("You are deleting the todo? ");
-
-    if (confirm) {
-      let newTodoList = [...todoList];
-      newTodoList.splice(index, 1);
-      setTodoList(newTodoList);
-    }
-  }
-
   if (isEditing) {
     return (
       <TodoForm
-        actionType={EDIT_MODE}
+        fromActionType={FORM_EDIT_MODE}
+        closeTodoFormModal={closeTodoFormModal}
+        id={id}
         username={username}
         email={email}
         todoTitle={todoTitle}
         todoDescription={todoDescription}
-        closeTodoFormModal={closeTodoFormModal}
-        index={index}
       />
     );
   }
@@ -77,7 +68,14 @@ function Todo({ username, email, todoTitle, todoDescription, index }) {
         </button>
         <button
           className="hidden bg-red-700 text-white px-2 py-1 rounded-md hover:bg-red-500 active:bg-red-900 group-hover:block"
-          onClick={() => deleteTodo(index)}
+          onClick={() =>
+            dispatch({
+              type: actions.DELETE_TODO,
+              payload: {
+                id,
+              },
+            })
+          }
         >
           Delete
         </button>
